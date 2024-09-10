@@ -1,0 +1,104 @@
+*{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:white;
+}
+.bg-header{
+  background-color: #0EA5E9;
+}
+
+.bg-contents{
+  background-color: black;
+}
+
+.bg-card{
+  background-color: #050E12;
+}
+
+.text-header-card{
+  color: #B6B6B6;
+}
+
+.text-ellipsis {
+  white-space: nowrap;      /* Mencegah teks membungkus ke baris berikutnya */
+  overflow: hidden;         /* Menyembunyikan teks yang melampaui batas */
+  text-overflow: ellipsis;  /* Menampilkan titik-titik saat teks terlalu panjang */
+}
+
+.size-card{
+  /* min-width: 200px; */
+  width: 100%;
+  height: 355.1px;
+}
+
+.size-card:hover {
+  box-shadow: 0px 4px 8px rgba(14, 165, 233, 0.5); /* Shadow with blue color */
+  cursor: pointer;
+  transform: scale(1.02);
+  /* z-index: 10; */
+}
+
+.size-img-card{
+  width: 100%;
+  height: 290px;
+}
+
+.icon-mark{
+  margin-right: 35px;
+  margin-bottom: 7px;
+}
+.icon-favorite{
+  margin-right: 8px;
+  margin-bottom: 10px;
+}
+
+.icon-favorite, .icon-mark {
+  opacity: 0; /* Hide icons */
+  transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+/* Show icons when hovering over the poster */
+.poster:hover ~ .icon-mark,
+.poster:hover ~ .icon-favorite {
+  opacity: 1; /* Show icons */
+}
+.icon-mark:hover,
+.icon-favorite:hover {
+  opacity: 1; /* Ensure icons are visible on hover */
+}
+
+@media (max-width: 455px) {
+  .header-card{
+    font-size: 10px;
+  }
+  .size-card{
+    width: 100%;
+    height: 365.1px;
+    margin: auto;
+  }
+  .size-img-card{
+    height: 300px;
+  }
+}
+
+/* @media screen and (min-width: 455px) {
+  .size-card{
+    width: 180px;
+    height: 355.1px;
+  }
+  
+  .size-img-card{
+    height: 290px;
+  }
+} */
+
+
+
+/* @media screen and (max-width: 455px) {
+  .size-card{
+    height: 355.1px;
+  }
+  
+  .size-img-card{
+    height: 290px;
+  }
+} */
