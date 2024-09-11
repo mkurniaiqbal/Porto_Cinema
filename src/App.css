@@ -2,6 +2,10 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color:white;
 }
+body {
+  background-color: black !important;
+}
+
 .bg-header{
   background-color: #0EA5E9;
 }
@@ -18,6 +22,10 @@
   color: #B6B6B6;
 }
 
+.text-section-description{
+  color: #d1cdcd;
+}
+
 .text-ellipsis {
   white-space: nowrap;      /* Mencegah teks membungkus ke baris berikutnya */
   overflow: hidden;         /* Menyembunyikan teks yang melampaui batas */
@@ -28,12 +36,17 @@
   /* min-width: 200px; */
   width: 100%;
   height: 355.1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+
 }
 
 .size-card:hover {
   box-shadow: 0px 4px 8px rgba(14, 165, 233, 0.5); /* Shadow with blue color */
   cursor: pointer;
   transform: scale(1.02);
+  
   /* z-index: 10; */
 }
 
@@ -42,28 +55,56 @@
   height: 290px;
 }
 
-.icon-mark{
-  margin-right: 35px;
-  margin-bottom: 7px;
+.icon-mark, .icon-favorite {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.icon-favorite{
-  margin-right: 8px;
+
+
+
+.icon-mark:active, .icon-favorite:active {
+  background-color: red;
+  transform: scale(0.9);
+}
+
+/* Show the icons when hovering over the card */
+.card:hover .icon-mark, 
+.card:hover .icon-favorite {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Adjust icon positioning */
+.icon-mark {
+  padding-right: 35px;
   margin-bottom: 10px;
+  position: absolute;
+  bottom: 104px;
+  left: 110px;
 }
 
-.icon-favorite, .icon-mark {
-  opacity: 0; /* Hide icons */
-  transition: opacity 0.3s ease; /* Smooth transition */
+.icon-favorite {
+  margin-right: 8px;
+  margin-bottom: 7px;
+  position: absolute;
+  bottom: 104px;
+  left: 137px;
+
 }
 
-/* Show icons when hovering over the poster */
-.poster:hover ~ .icon-mark,
-.poster:hover ~ .icon-favorite {
-  opacity: 1; /* Show icons */
-}
-.icon-mark:hover,
-.icon-favorite:hover {
-  opacity: 1; /* Ensure icons are visible on hover */
+
+@media (max-width: 768px) {
+  .text-section-description{
+    font-size: 11px;
+
+  }
+  .text-title{
+    font-size: 18px;
+  }
+  .text-overview{
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 455px) {
@@ -77,6 +118,15 @@
   }
   .size-img-card{
     height: 300px;
+  }
+  .text-overview{
+    font-size: 12px;
+  }
+  .text-section-description{
+    font-size: 9px;
+  }
+  .text-title{
+    font-size: 20px;
   }
 }
 
@@ -102,3 +152,4 @@
     height: 290px;
   }
 } */
+
