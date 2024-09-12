@@ -11,6 +11,7 @@ import Home from "./pages/home/Home.jsx";
 import Detail from "./pages/detail/Detail.jsx";
 import WatchList from "./pages/watch_list/Watch_List.jsx";
 import FavoriteList from "./pages/favorite/Favorite.jsx";
+import Login from "./pages/login/Login.jsx";
 
 const App = () => {
   return (
@@ -19,11 +20,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/detail/:id" element={<Detail />} />
-          <Route path="/wacth-list" element={<WatchList />} />
+          <Route path="/watch-list" element={<WatchList />} />
           <Route path="/Favorite-list" element={<FavoriteList />} />
-          {/* <Route path="/about" element={<About />} />
-          <Route path="/user/:userId" element={<User />} />
-          <Route path="*" element={<Navigate to="/" />} /> */}
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </Router>

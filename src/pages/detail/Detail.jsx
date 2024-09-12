@@ -12,6 +12,8 @@ function Detail() {
   const dispatch = useDispatch();
   const location = useLocation();
   const { film } = location.state || {}; // Ambil data film dari state link to
+  console.log(location, "location");
+
   const { id } = useParams();
   const { movies, errorMovies, loadingMovies } = useSelector(
     (state) => state.movies

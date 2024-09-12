@@ -1,6 +1,8 @@
 .favorite:hover{
     color: red;
+    cursor: pointer;
 }
 .watch-list:hover{
     color: blue;
+    cursor: pointer;
 }
