@@ -5,6 +5,27 @@ import { Link } from "react-router-dom";
 import "./Card_Slider.css";
 
 function CardSlider({ films, headerCard, className }) {
+  function handleMark(param) {
+    const existingMark = JSON.parse(localStorage.getItem("WatchList")) || [];
+
+    const isFilmExists = existingMark.some((film) => film.id === param.id);
+
+    if (!isFilmExists) {
+      existingMark.push(param);
+      localStorage.setItem("WatchList", JSON.stringify(existingMark));
+    }
+  }
+  function handleFavorite(param) {
+    const existingFavorite =
+      JSON.parse(localStorage.getItem("FavoriteList")) || [];
+
+    const isFilmExists = existingFavorite.some((film) => film.id === param.id);
+
+    if (!isFilmExists) {
+      existingFavorite.push(param);
+      localStorage.setItem("FavoriteList", JSON.stringify(existingFavorite));
+    }
+  }
   return (
     <div className="bg-contents">
       <div className="container py-3">
@@ -50,12 +71,13 @@ function CardSlider({ films, headerCard, className }) {
                       src={Mark}
                       alt="Mark Icon"
                       className="icon-mark"
-                      // onClick={() => handleMark(film)}
+                      onClick={() => handleMark(film)}
                     />
                     <img
                       src={Favorite}
                       alt="Favorite Icon"
                       className="icon-favorite"
+                      onClick={() => handleFavorite(film)}
                     />
                   </div>
                 </div>

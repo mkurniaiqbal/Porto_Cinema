@@ -12,7 +12,6 @@ function Detail() {
   const dispatch = useDispatch();
   const location = useLocation();
   const { film } = location.state || {}; // Ambil data film dari state link to
-  console.log(location, "location");
 
   const { id } = useParams();
   const { movies, errorMovies, loadingMovies } = useSelector(
@@ -21,6 +20,29 @@ function Detail() {
   const { tvShows, loadingTvShows, errorTvShows } = useSelector(
     (state) => state.tvShows
   );
+
+  function handleMark(param) {
+    const existingMark = JSON.parse(localStorage.getItem("WatchList")) || [];
+
+    const isFilmExists = existingMark.some((film) => film.id === param.id);
+
+    if (!isFilmExists) {
+      existingMark.push(param);
+      localStorage.setItem("WatchList", JSON.stringify(existingMark));
+    }
+  }
+
+  function handleFavorite(param) {
+    const existingFavorite =
+      JSON.parse(localStorage.getItem("FavoriteList")) || [];
+
+    const isFilmExists = existingFavorite.some((film) => film.id === param.id);
+
+    if (!isFilmExists) {
+      existingFavorite.push(param);
+      localStorage.setItem("FavoriteList", JSON.stringify(existingFavorite));
+    }
+  }
 
   useEffect(() => {
     dispatch(fetchMovies());
@@ -109,8 +131,18 @@ function Detail() {
                     {film.vote_average.toFixed(1)}
                   </p>
                 </div>
-                <img src={Mark} alt="" />
-                <img src={Favorite} alt="" />
+                <img
+                  src={Mark}
+                  alt="Mark"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleMark(film)}
+                />
+                <img
+                  src={Favorite}
+                  alt="Fav"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => handleFavorite(film)}
+                />
               </div>
               <p className="text-section-description mt-3 fst-italic ">
                 {film.title ? film.title : film.name}
