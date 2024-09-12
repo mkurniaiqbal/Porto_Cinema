@@ -1,8 +1,16 @@
-# React + Vite
+## User Login
+- username = iqbal
+- password = iqbal123
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Cara run project melalui url
+disini saya menggunakan Vercel untuk deploy sehingga project ini bisa di liat tanpa di clone terlebih dahulu, di bawah ini saya lampirkan urlnya.
+- https://porto-cinema.vercel.app/
 
-Currently, two official plugins are available:
+## Package
+Saya menginstall beberapa package
+ - css(boostrap) = npm install boostrap
+ - aos(animation) = npm install aos
+ - axios = npm install axios
+ - react-redux dan redux toolkit = npm install redux react-redux @reduxjs/toolkit
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+=================================================================================================================
