@@ -15,7 +15,7 @@ function CardSlider({ films, headerCard, className }) {
         <div className="slider-container">
           <div className={`slider`}>
             {films.map((film) => (
-              <div className="slider-item" key={film.id}>
+              <div className="slider-item" key={film.id} data-aos="fade-left">
                 <div className="card border-0 rounded size-card">
                   <Link
                     to={`/detail/${film.id}`}
@@ -46,20 +46,7 @@ function CardSlider({ films, headerCard, className }) {
                   </Link>
 
                   <div className="position-relative">
-                    <div
-                      className="icon-mark"
-
-                      // onClick={() => handleMark(film)}
-                    >
-                      <i class="bi bi-bookmark fs-5"></i>
-                    </div>
-                    <div
-                      className="icon-favorite"
-                      // onClick={() => handleFavorite(film)}
-                    >
-                      <i class="bi bi-heart fs-5"></i>
-                    </div>
-                    {/* <img
+                    <img
                       src={Mark}
                       alt="Mark Icon"
                       className="icon-mark"
@@ -69,7 +56,7 @@ function CardSlider({ films, headerCard, className }) {
                       src={Favorite}
                       alt="Favorite Icon"
                       className="icon-favorite"
-                    /> */}
+                    />
                   </div>
                 </div>
               </div>

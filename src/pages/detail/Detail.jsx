@@ -1,60 +1,35 @@
-import { useParams, useLocation, Link } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
+import { useParams, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovies } from "../../store/movie/Movie.jsx";
+import { fetchTvShows } from "../../store/tv/tv.jsx";
 import Mark from "../../assets/Mark.svg";
 import Favorite from "../../assets/Favorite.svg";
-import Card from "../../components/card/Card";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import Navbar from "../../components/navbar/Navbar";
 import CardSlider from "../../components/card_slider/Card_Slider";
 
 function Detail() {
-  const [tvShows, setTvShows] = useState([]);
-  const [loadingTvShows, setLoadingTvShows] = useState(true);
-  const [errorTvShows, setErrorTvShows] = useState(null);
-
-  const accountId = "66df132d6b244965206d525b"; // Replace with your actual account ID
-  const token =
-    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NTNkMDdjYjY5YTIzYjFhYTMwYTAxNTMyNDVhMzRjYiIsIm5iZiI6MTcyNTg5OTI2MS43MTI0OTksInN1YiI6IjY2ZGYxMzJkNmIyNDQ5NjUyMDZkNTI1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-8-I6Ld6dzOmTnIsWMJmdGNtqILw5L25NhpfeMSsxqI"; // Replace with your actual Bearer token
-
-  const apiUrlTvShows = `https://api.themoviedb.org/4/account/${accountId}/tv/recommendations`;
-
-  const headersConfig = {
-    Authorization: `Bearer ${token}`,
-  };
-
-  const params = {
-    page: 1,
-    language: "en-US",
-  };
-
-  const fetchTvShows = async () => {
-    try {
-      const response = await axios.get(apiUrlTvShows, {
-        headers: headersConfig,
-        params,
-      });
-      setTvShows(response.data.results);
-      setLoadingTvShows(false);
-    } catch (error) {
-      setErrorTvShows(error);
-      setLoadingTvShows(false);
-    }
-  };
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const { film } = location.state || {}; // Ambil data film dari state link to
+  const { id } = useParams();
+  const { movies, errorMovies, loadingMovies } = useSelector(
+    (state) => state.movies
+  );
+  const { tvShows, loadingTvShows, errorTvShows } = useSelector(
+    (state) => state.tvShows
+  );
 
   useEffect(() => {
-    fetchTvShows();
-  }, []);
-
-  const location = useLocation();
-  const { film } = location.state || {}; // Ambil data film dari state
-
-  const { id } = useParams();
+    dispatch(fetchMovies());
+    dispatch(fetchTvShows());
+  }, [dispatch]);
 
   if (!film) {
     return <p>No film data available</p>;
   }
 
-  if (loadingTvShows) {
+  if (loadingTvShows || loadingMovies) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <div
@@ -67,8 +42,8 @@ function Detail() {
       </div>
     );
   }
-  // if (errorMovies)
-  //   return <div>Error loading movies: {errorMovies.message}</div>;
+  if (errorMovies)
+    return <div>Error loading movies: {errorMovies.message}</div>;
   if (errorTvShows)
     return <div>Error loading TV shows: {errorTvShows.message}</div>;
 
@@ -159,7 +134,7 @@ function Detail() {
         className="mt-5 pt-5"
       />
       <CardSlider
-        films={tvShows}
+        films={movies}
         headerCard={"Recommendations Movies"}
         className={"mt-3"}
       />

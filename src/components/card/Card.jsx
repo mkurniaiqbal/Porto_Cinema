@@ -4,28 +4,22 @@ import { Link } from "react-router-dom";
 
 function Card({ films, headerCard, className, className2 }) {
   function handleMark(param) {
-    // Ambil data yang ada di localStorage dan parsing ke array
     const existingMark = JSON.parse(localStorage.getItem("WatchList")) || [];
 
-    // Cek jika film dengan ID yang sama sudah ada
     const isFilmExists = existingMark.some((film) => film.id === param.id);
 
     if (!isFilmExists) {
-      // Tambahkan film baru jika belum ada
       existingMark.push(param);
       localStorage.setItem("WatchList", JSON.stringify(existingMark));
     }
   }
   function handleFavorite(param) {
-    // Ambil data yang ada di localStorage dan parsing ke array
     const existingFavorite =
       JSON.parse(localStorage.getItem("FavoriteList")) || [];
 
-    // Cek jika film dengan ID yang sama sudah ada
     const isFilmExists = existingFavorite.some((film) => film.id === param.id);
 
     if (!isFilmExists) {
-      // Tambahkan film baru jika belum ada
       existingFavorite.push(param);
       localStorage.setItem("FavoriteList", JSON.stringify(existingFavorite));
     }
@@ -44,7 +38,10 @@ function Card({ films, headerCard, className, className2 }) {
               className="col-6 col-sm-4 col-md-3 col-lg-2 py-2"
               key={film.id}
             >
-              <div className="card border-0 rounded size-card">
+              <div
+                className="card border-0 rounded size-card"
+                data-aos="fade-up"
+              >
                 <Link
                   to={`/detail/${film.id}`}
                   state={{ film }}
@@ -74,27 +71,18 @@ function Card({ films, headerCard, className, className2 }) {
                 </Link>
 
                 <div className="position-relative">
-                  <div className="icon-mark" onClick={() => handleMark(film)}>
-                    <i class="bi bi-bookmark fs-5"></i>
-                  </div>
-                  <div
-                    className="icon-favorite"
-                    onClick={() => handleFavorite(film)}
-                  >
-                    <i class="bi bi-heart fs-5"></i>
-                  </div>
-                  {/* <img
+                  <img
                     src={Mark}
                     alt="Mark Icon"
                     className="icon-mark"
                     onClick={() => handleMark(film)}
-                  /> */}
-                  {/* <img
+                  />
+                  <img
                     src={Favorite}
                     alt="Favorite Icon"
                     className="icon-favorite"
                     onClick={() => handleFavorite(film)}
-                  /> */}
+                  />
                 </div>
               </div>
             </div>
