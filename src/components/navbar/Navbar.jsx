@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setRedirectPath } from "../../store/path/Path";
 import Modal from "../modal/Modal";
+import Logo_Logout from "../../assets/logo-logout.svg";
 import "./Navbar.css";
 
 function Navbar() {
@@ -41,6 +42,11 @@ function Navbar() {
     checkLogin();
   }
 
+  function handleLogout() {
+    localStorage.removeItem("username");
+    navigate("/");
+  }
+
   function handleCloseModal() {
     setShowModal(false);
   }
@@ -65,6 +71,16 @@ function Navbar() {
           <div className="cursor-pointer" onClick={handleWatchList}>
             <p className="watch-list">Watchlist</p>
           </div>
+          {username && (
+            <div>
+              <img
+                className="ms-3 logo-logout"
+                src={Logo_Logout}
+                alt="Logout"
+                onClick={handleLogout}
+              />
+            </div>
+          )}
         </div>
       </div>
 
