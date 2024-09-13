@@ -9,10 +9,6 @@ function Modal({ onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <Link to={"/login"}>
         <div className="modal-dialog">
-          {/* Optional close button */}
-          {/* <button className="modal-close-btn" onClick={onClose}>
-          X
-        </button> */}
           <img src={Logo_Login} alt="Logo" />
           <span className="text-secondary">Login</span>
         </div>

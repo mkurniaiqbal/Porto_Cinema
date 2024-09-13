@@ -11,7 +11,6 @@ function WatchList() {
     const savedWatchList = localStorage.getItem("WatchList");
     const getUsername = localStorage.getItem("username");
     if (savedWatchList) {
-      // Asumsikan data yang disimpan adalah string JSON yang bisa diuraikan
       setWatchList(JSON.parse(savedWatchList));
     }
     if (!getUsername) {
