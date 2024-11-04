@@ -6,6 +6,7 @@ import { fetchTvShows } from "../../store/tv/tv.jsx";
 import Card from "../../components/card/Card.jsx";
 import Navbar from "../../components/navbar/Navbar.jsx";
 import CardSlider from "../../components/card_slider/Card_Slider.jsx";
+import SearchBar from "../../components/search_bar/Search_Bar.jsx"; // Import the SearchBar component
 
 function Home() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function Home() {
       <section>
         <Navbar />
       </section>
+
+      {/* Search Bar Component */}
+      <SearchBar />
 
       <section>
         <CardSlider

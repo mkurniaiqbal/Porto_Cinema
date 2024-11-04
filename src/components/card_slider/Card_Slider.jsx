@@ -82,6 +82,7 @@ function FilmCard({ film, onMark, onFavorite }) {
               }
               className="card-img-top"
               alt={film.title}
+              style={{ height: "290px", objectFit: "cover" }}
             />
           </div>
           <div className="card-body bg-card rounded-bottom">
